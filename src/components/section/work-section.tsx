@@ -36,9 +36,9 @@ export default function WorkSection() {
         <AccordionItem
           key={work.company}
           value={work.company}
-          className="w-full border-b-0 grid gap-2"
+          className="w-full border-b-0 grid gap-2 group/item"
         >
-          <AccordionTrigger className="hover:no-underline p-0 cursor-pointer transition-colors rounded-none group [&>svg]:hidden">
+          <AccordionTrigger className="hover:no-underline p-3 -m-3 cursor-pointer transition-all duration-300 rounded-xl group hover:bg-muted/50 [&>svg]:hidden">
             <div className="flex items-center gap-x-3 justify-between w-full text-left">
               <div className="flex items-center gap-x-3 flex-1 min-w-0">
                 <LogoImage src={work.logoUrl} alt={work.company} />
@@ -63,20 +63,25 @@ export default function WorkSection() {
                       />
                     </span>
                   </div>
-                  <div className="font-sans text-sm text-muted-foreground">
+                  <div className="font-mono text-[11px] sm:text-xs uppercase tracking-wider text-muted-foreground/70">
                     {work.title}
                   </div>
                 </div>
               </div>
-              <div className="flex items-center gap-1 text-xs tabular-nums text-muted-foreground text-right flex-none">
-                <span>
-                  {work.start} - {work.end ?? DATA.sections.work.presentLabel}
+              <div className="flex flex-col items-end gap-1 text-[10px] sm:text-xs font-mono text-muted-foreground/60 text-right flex-none">
+                <span className="bg-muted px-2 py-0.5 rounded-md text-primary font-semibold tracking-tight uppercase">
+                  {work.location}
+                </span>
+                <span className="tabular-nums">
+                  {work.start} — {work.end ?? DATA.sections.work.presentLabel}
                 </span>
               </div>
             </div>
           </AccordionTrigger>
-          <AccordionContent className="p-0 ml-13 text-xs sm:text-sm text-muted-foreground">
-            {work.description}
+          <AccordionContent className="p-0 ml-13 pb-4">
+            <div className="pl-4 border-l-2 border-primary/20 text-sm text-muted-foreground/80 leading-relaxed max-w-[550px] py-1">
+              {work.description}
+            </div>
           </AccordionContent>
         </AccordionItem>
       ))}

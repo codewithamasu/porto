@@ -1,7 +1,7 @@
 import BlurFade from "@/components/magicui/blur-fade";
 import { DATA } from "@/data/resume";
 
-const BLUR_FADE_DELAY = 0.04;
+const BLUR_FADE_DELAY = 0.02;
 
 // Aspect ratios per column: outer cols are square, middle col is portrait
 const colAspects = [
@@ -37,6 +37,7 @@ export default function PhotosSection() {
                   <img
                     src={photo.src}
                     alt={photo.alt}
+                    loading="lazy"
                     className={`w-full rounded-xl object-cover ${colAspects[colIdx][idx] ?? "aspect-square"}`}
                   />
                 </BlurFade>

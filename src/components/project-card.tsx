@@ -17,7 +17,8 @@ function ProjectImage({ src, alt }: { src: string; alt: string }) {
     <img
       src={src}
       alt={alt}
-      className="w-full h-48 object-cover"
+      loading="lazy"
+      className="w-full h-full object-cover"
       onError={() => setImageError(true)}
     />
   );
@@ -53,11 +54,11 @@ export function ProjectCard({
   return (
     <div
       className={cn(
-        "flex flex-col h-full border border-border rounded-xl overflow-hidden hover:ring-2 cursor-pointer hover:ring-muted transition-all duration-200",
+        "group flex flex-col h-full border border-border/50 bg-card rounded-2xl overflow-hidden hover:ring-1 cursor-pointer hover:ring-primary/20 transition-all duration-500 ease-out hover:-translate-y-0.5 hover:shadow-xl",
         className
       )}
     >
-      <div className="relative shrink-0">
+      <div className="relative shrink-0 overflow-hidden bg-muted">
         <a
           href={href || "#"}
           target="_blank"
@@ -71,12 +72,14 @@ export function ProjectCard({
               loop
               muted
               playsInline
-              className="w-full h-48 object-cover"
+              className="w-full h-48 md:h-60 object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
           ) : image ? (
-            <ProjectImage src={image} alt={title} />
+            <div className="transition-transform duration-700 ease-out group-hover:scale-105 w-full h-48 md:h-60">
+              <ProjectImage src={image} alt={title} />
+            </div>
           ) : (
-            <div className="w-full h-48 bg-muted" />
+            <div className="w-full h-48 md:h-60 bg-muted" />
           )}
         </a>
         {links && links.length > 0 && (
@@ -90,7 +93,7 @@ export function ProjectCard({
                 onClick={(e: React.MouseEvent) => e.stopPropagation()}
               >
                 <Badge
-                  className="flex items-center gap-1.5 text-xs bg-black text-white hover:bg-black/90"
+                  className="flex items-center gap-1.5 text-xs bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-105 transition-transform duration-300 ease-out"
                   variant="default"
                 >
                   {link.icon}
@@ -111,10 +114,10 @@ export function ProjectCard({
             href={href || "#"}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
+            className="text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm p-2"
             aria-label={`Open ${title}`}
           >
-            <ArrowUpRight className="h-4 w-4" aria-hidden />
+            <ArrowUpRight className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden />
           </a>
         </div>
         <div className="text-xs flex-1 prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
