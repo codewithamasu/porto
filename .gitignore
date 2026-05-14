@@ -2,6 +2,8 @@
 .claude/
 .vscode/
 .wrangler/
+.agents/
+skills-lock.json
 
 # build output
 dist/
